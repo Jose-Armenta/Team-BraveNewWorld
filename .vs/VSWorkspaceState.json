@@ -6,9 +6,13 @@
     "\\BNW MK.00000001\\Assets\\Scripts"
   ],
 <<<<<<< HEAD
+<<<<<<< HEAD
   "SelectedNode": "\\BNW MK.00000001\\Assets\\Scripts\\PanZoom.cs",
 =======
   "SelectedNode": "\\BNW MK.00000001\\Assets\\Scripts\\match_manager.cs",
+>>>>>>> Tests
+=======
+  "SelectedNode": "\\BNW MK.00000001\\Assets\\Scripts\\Preload.cs",
 >>>>>>> Tests
   "PreviewInSolutionExplorer": false
 }
