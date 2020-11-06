@@ -94,4 +94,12 @@ public class server_manager : MonoBehaviour
     {
         webSocket.SendText(JsonUtility.ToJson(new update_message(gameObject, function, parameters)));
     }
+
+    // Resets the servers connection
+    // Parameters = []
+    public void reset(string[] parameters)
+    {
+        webSocket.Close();
+        Start();
+    }
 }
