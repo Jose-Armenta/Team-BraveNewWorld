@@ -19,6 +19,9 @@ public class Tile : MonoBehaviour
     public bool occupied = false; // if there is a character currently on this tile
     public bool target = false;
     public bool selectable = false;
+    public bool cooldown = false;  // if the character has a cooldown
+    public bool enemy_in_range = false; // if the enemy is in range
+    public int  health = 10;
 
     
     public GameObject map; // this should be set to the map gameobject
@@ -99,9 +102,11 @@ public class Tile : MonoBehaviour
             import_manager.run_function_all(currentchar.name, "move", new string[1] { this.name });
         }
         // check to see if you can attack a character on this tile
-        else if(occupied) // and in range, and not a friendly civ
+        else if(occupied) // and in range, and not a friendly civ, assume everyone is enemy for now
         {
-            // run the attack script ///////////////  
+            // run the attack script ///////////////
+            if(cooldown == true && enemy_in_range == true)  
+               Damage();
         }
            
         import_manager.run_function("map", "unselect_tile", new string[0] { });
@@ -214,5 +219,15 @@ public class Tile : MonoBehaviour
         parent = null;
         distance = 0;
         Updateme();
+    }
+
+    // Damage that the enemy will take
+    public void Damage()
+    {
+         health--;
+         if (health <= 0) 
+         {
+             print("The player has been damaged");
+         }        
     }
 }

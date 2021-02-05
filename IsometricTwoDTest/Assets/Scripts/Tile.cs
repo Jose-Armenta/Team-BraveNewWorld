@@ -14,18 +14,21 @@ public class Tile : MonoBehaviour
     // External Classes//
     import_manager import_manager;  // Import_Manager Class that facilitates cross class, player, and server function calls.
 
-    public bool walkable = true;
-    public bool current = false; // if the player is currently using this tile
-    public bool occupied = false; // if there is a character currently on this tile
-    public bool target = false;
-    public bool selectable = false;
+    public bool walkable       = true;
+    public bool current        = false; // if the player is currently using this tile
+    public bool occupied       = false; // if there is a character currently on this tile
+    public bool target         = false;
+    public bool selectable     = false;
+    public bool cooldown       = false; // if the character has a cooldown
+    public bool enemy_in_range = false; // if the enemy is in range
+    public int  health         = 10;
 
     public GameObject currentchar = null; // the character currently on this tile. Or about to be moved to this tile.
     public List<Tile> adjacencyList = new List<Tile>();
 
     //Needed BFS (breadth first search)
     public bool visited = false;
-    public Tile parent = null;
+    public Tile parent  = null;
     public int distance = 0;
 
     //For A*
@@ -90,10 +93,7 @@ public class Tile : MonoBehaviour
 
     // Set current to this tile when it gets clicked
     public void OnMouseDown()
-    {
-        
-
-
+    {   
         // If the tile is selectable and open, then move the current character to this tile
         if (selectable && (occupied == false))
         {
@@ -104,7 +104,8 @@ public class Tile : MonoBehaviour
         else if(occupied) // and in range, and not a friendly civ
         {
             // check if this characters civ is the same as the character clicking on it
-            
+            if(cooldown == true && enemy_in_range == true)  
+               Damage();
         }
            
         import_manager.run_function("Map", "unselect_tile", new string[0] { });
@@ -214,5 +215,14 @@ public class Tile : MonoBehaviour
 
         f = g = h = 0;
         Updateme();
+    }
+    // Damage that the enemy will take
+    public void Damage()
+    {
+         health--;
+         if (health <= 0) 
+         {
+             print("The player has been damaged");
+         }        
     }
 }

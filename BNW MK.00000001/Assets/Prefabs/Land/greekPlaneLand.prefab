@@ -114,6 +114,9 @@ MonoBehaviour:
   occupied: 0
   target: 0
   selectable: 0
+  cooldown: 0
+  enemy_in_range: 0
+  health: 10
   map: {fileID: 0}
   currentchar: {fileID: 0}
   adjacencyList: []
