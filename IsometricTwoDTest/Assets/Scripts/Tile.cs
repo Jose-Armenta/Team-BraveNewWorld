@@ -14,9 +14,11 @@ public class Tile : MonoBehaviour
     // External Classes//
     import_manager import_manager;  // Import_Manager Class that facilitates cross class, player, and server function calls.
     map_manager map_manager;
-
+    public Material waterGround;
+    public Material asianGround;
+    public Material greekGround;
+    public Material vikingGround;
     public bool walkable = true;
-
 
     public bool current = false;  // if the player is currently using this tile
     public bool occupied = false; // if there is a character currently on this tile
@@ -40,8 +42,6 @@ public class Tile : MonoBehaviour
 	{
         import_manager = GameObject.Find("network_manager").GetComponent<import_manager>(); // Connects to the import_manager.
         map_manager     = GameObject.Find("Map").GetComponent<map_manager>();
-
-        realColor = this.GetComponent<Renderer>().material.color;
     }
 
     // Update is whenever needed
@@ -75,8 +75,8 @@ public class Tile : MonoBehaviour
         }
         else
         {
-                // Sometime the realColor is Black here for appearantly no reason.
-                this.GetComponent<Renderer>().material.color = realColor;
+            // Sometime the realColor is Black here for appearantly no reason.
+            reset_ground();
         }
     }
 
@@ -235,6 +235,26 @@ public class Tile : MonoBehaviour
     public int get_civilization()
     {
         return civilization;
+    }
+
+    public void reset_ground()
+    {
+        if (get_civilization() == -1)
+        {
+            this.GetComponent<Renderer>().material = waterGround;
+        }
+        else if (get_civilization() == 0)
+        {
+            this.GetComponent<Renderer>().material = asianGround;
+        }
+        else if (get_civilization() == 1)
+        {
+            this.GetComponent<Renderer>().material = greekGround;
+        }
+        else if (get_civilization() == -1)
+        {
+            this.GetComponent<Renderer>().material = vikingGround;
+        }
     }
 
     // Sets the grid of this tile. Grid = [int xPosition, int yPosition].

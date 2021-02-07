@@ -108,13 +108,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8baa81c1aa89a3d4aa27a1eaa07d6051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterGround: {fileID: 2100000, guid: fd8f505468700c44a90cc394fea90c29, type: 2}
+  asianGround: {fileID: 2100000, guid: e55dc1d3b45d4ae45a1c12e85e213cb6, type: 2}
+  greekGround: {fileID: 2100000, guid: d83accc1b7a8092489b0fd7168622d40, type: 2}
+  vikingGround: {fileID: 2100000, guid: f8812ebb7dbda764992397bae9196099, type: 2}
   walkable: 0
+  current: 0
+  occupied: 0
   target: 0
   adjacencyList: []
-  currentchar: {fileID: 0}
-  visited: 0
-  parent: {fileID: 0}
-  distance: 0
-  f: 0
-  g: 0
-  h: 0
+  currentCharacter: {fileID: 0}
+  nextAttack: 0
+  cooldown: 3
