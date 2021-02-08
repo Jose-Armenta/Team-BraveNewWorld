@@ -14,7 +14,7 @@ public class character_selection : MonoBehaviour
     private civ_description description;
 
     [SerializeField]
-    private building_type civ_number;
+    private building_civ civ_number;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +49,7 @@ public class character_selection : MonoBehaviour
     // Gives the Civilization
     public void get_civilization ()
     {
-        import_manager.run_function("network_manager", "set_player_civilization", new string[1] { description.selectedCivString });
+        import_manager.run_function("network_manager", "set_player_civilization", new string[1] { description.selectedCiv.ToString() });
         import_manager.run_function("network_manager", "set_champion_name",       new string[1] { description.inputText.text });
     }
 }
