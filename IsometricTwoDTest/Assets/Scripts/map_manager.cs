@@ -16,7 +16,7 @@ public class map_manager : MonoBehaviour
     public GameObject vikingLand;
     public GameObject greekLand;
     public GameObject asianLand;
-    public map_item currentSelected; // stores what tile is currently selected
+    private GameObject currentSelectedTile = null; // stores what tile is currently selected
     public string currentCharacter = null; // Character on current selected tile
     public map_item[,] map;
 
@@ -271,13 +271,33 @@ public class map_manager : MonoBehaviour
     // Set the current character to a given character object
     public void set_current_character(string[] character)
     {
+        Debug.Log("Setting current Character in map to " + character[0]);
         currentCharacter = character[0];
     }
 
     // sends the string currentChar to the calling script
     public string get_current_character()
     {
+        Debug.Log("Returning the current character as " + currentCharacter);
         return currentCharacter;
+    }
+
+    // Sets the given tile as the currently selected Tile.
+    public void set_current_tile(GameObject tile)
+    {
+        if (currentSelectedTile != null)
+        {
+            currentSelectedTile.GetComponent<Tile>().set_as_not_current();
+        }
+
+        tile.GetComponent<Tile>().set_as_current();
+        currentSelectedTile = tile;
+    }
+
+    // Gets the tile that is currently selected.
+    public GameObject get_current_tile()
+    {
+        return currentSelectedTile;
     }
 
     // Finds the wanted map item and runs the given function on it.
